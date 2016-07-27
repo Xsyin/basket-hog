@@ -45,19 +45,19 @@ for image in img_path:
 
 #generate data.txt for libsvm format
 
-# fp = open('./data.txt', 'w')
-# for j in xrange(0, i-1):
-#     if label_mat[j] == 1:
-#         s = '+1 '
-#     else:
-#         s = '-1 '
-#     for k in xrange(0, len(data_mat[j])):
-#         s = s+str(k+1)+':'+str(data_mat[j][k])+' '
-#     fp.write(s+'\n')
-# fp.close()
+fp = open('./data.txt', 'w')
+for j in xrange(0, i-1):
+    if label_mat[j] == 1:
+        s = '+1 '
+    else:
+        s = '-1 '
+    for k in xrange(0, len(data_mat[j])):
+        s = s+str(k+1)+':'+str(data_mat[j][k])+' '
+    fp.write(s+'\n')
+fp.close()
 
 y, x = svm_read_problem('data.txt')
-m = svm_train(y[:5000], x[:5000], '-c 8')
+m = svm_train(y[:6000], x[:6000], '-c 2.5 -h 0')
 svm_save_model('data.model', m)
 p_label, p_acc, p_val = svm_predict(y, x, m)
 

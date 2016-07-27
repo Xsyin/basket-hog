@@ -16,9 +16,6 @@ win_size = (40, 40)
 block_size = (10, 10)
 block_stride = (5, 5)
 cell_size = (5, 5)
-# block_size = (20, 20)
-# block_stride = (10, 10)
-# cell_size = (10, 10)
 nbins = 9
 hog = cv2.HOGDescriptor(win_size, block_size, block_stride, cell_size, nbins)
 
@@ -47,7 +44,7 @@ for image in img_path:
 #generate data.txt for grid.py to get best SVM params
 #
 # print 'write begin !'
-# fp = open('/home/xsyin/libsvm-3.21/tools/data1.txt', 'w')
+# fp = open('/home/xsyin/libsvm-3.21/tools/data.txt', 'w')
 # for j in xrange(0, i-1):
 #     if label_mat[j] == 1:
 #         s = '+1 '
@@ -60,13 +57,12 @@ for image in img_path:
 # print 'write end !'
 
 svm_params = dict(kernel_type=cv2.SVM_LINEAR,
-                  svm_type=cv2.SVM_C_SVC,
-                  C=8.0, gamma=0.03125)
+                  svm_type=cv2.SVM_C_SVC)
 print 'begin train SVM...'
 svm = cv2.SVM()
-svm.train(data_mat, label_mat, params=svm_params)
-svm.save('svm_data.xml')
-print 'svm_data.xml have saved !'
+svm.train_auto(data_mat, label_mat, varIdx=None, sampleIdx=None, params=svm_params)
+svm.save('svm_data2.xml')
+print 'svm_data2.xml have saved !'
 
 
 

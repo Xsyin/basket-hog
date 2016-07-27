@@ -16,7 +16,7 @@ nbins = 9
 hog = cv2.HOGDescriptor(win_size, block_size, block_stride, cell_size, nbins)
 
 svm = cv2.SVM()
-svm.load('data_pos_3014_neg_3050.xml')
+svm.load('svm_data.xml')
 
 
 result = []
