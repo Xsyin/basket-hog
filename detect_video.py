@@ -2,7 +2,7 @@ import cv2
 from util import draw_detections, get_svm_vector
 
 
-path = '/home/xsyin/videos/'
+path = '/home/xsyin/video/'
 
 if __name__ == '__main__':
 
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     nbins = 9
     hog = cv2.HOGDescriptor(win_size, block_size, block_stride, cell_size, nbins)
 
-    video_path = path + '02.mov'
+    video_path = path + '02.mp4'
     vector = get_svm_vector('svm_data.xml')
     hog.setSVMDetector(vector)
     cap = cv2.VideoCapture(video_path)
